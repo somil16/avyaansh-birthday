@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avyaansh's 1st Birthday Invitation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .slide {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: rgba(0,0,0,0.3);
+        }
+        
+        .slide.active {
+            display: flex;
+            animation: slideIn 1s ease-in-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide h1 {
+            font-size: 4em;
+            color: white;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.8);
+            margin: 20px 0;
+            background: rgba(0,0,0,0.6);
+            padding: 20px 40px;
+            border-radius: 20px;
+        }
+        
+        .slide h2 {
+            font-size: 3em;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            margin: 15px 0;
+            background: rgba(0,0,0,0.5);
+            padding: 15px 30px;
+            border-radius: 15px;
+        }
+        
+        .slide h3 {
+            font-size: 2.8em;
+            color: #ffeb3b;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.9);
+            margin: 20px 0;
+            background: rgba(0,0,0,0.7);
+            padding: 20px 40px;
+            border-radius: 15px;
+        }
+        
+        .slide p {
+            font-size: 2em;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.9);
+            line-height: 1.4;
+            max-width: 800px;
+            background: rgba(0,0,0,0.7);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 15px;
+        }
+        
+        .big-number {
+            font-size: 10em !important;
+            color: gold;
+            text-shadow: 6px 6px 12px rgba(0,0,0,0.9);
+            animation: pulse 2s infinite;
+            background: rgba(0,0,0,0.8) !important;
+            padding: 30px 50px !important;
+            border-radius: 30px !important;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .baby-photo {
+            max-width: 350px;
+            max-height: 400px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+            margin: 20px;
+            animation: photoFloat 3s ease-in-out infinite;
+            border: 5px solid white;
+        }
+        
+        @keyframes photoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .event-details {
+            background: rgba(0,0,0,0.9) !important;
+            padding: 40px !important;
+            border-radius: 25px !important;
+            margin: 30px auto !important;
+            max-width: 700px !important;
+            border: 3px solid #ffeb3b;
+        }
+        
+        .event-details p {
+            font-size: 2.5em !important;
+            margin: 20px 0 !important;
+            color: #fff !important;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.9) !important;
+            background: none !important;
+            padding: 10px !important;
+        }
+        
+        .balloons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .balloon:nth-child(1) { background: #ff6b6b; left: 10%; animation-delay: 0s; }
+        .balloon:nth-child(2) { background: #4ecdc4; left: 30%; animation-delay: 1s; }
+        .balloon:nth-child(3) { background: #45b7d1; left: 50%; animation-delay: 2s; }
+        .balloon:nth-child(4) { background: #96ceb4; left: 70%; animation-delay: 3s; }
+        .balloon:nth-child(5) { background: #feca57; left: 90%; animation-delay: 4s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh); }
+            50% { transform: translateY(-100px); }
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.9);
+            border: 2px solid #333;
+            padding: 15px 25px;
+            margin: 0 10px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .auto-play {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.9);
+            border: 2px solid #333;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Balloons -->
+    <div class="balloons">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
+    
+    <!-- Slide 1: Invitation with Photo -->
+    <div class="slide active">
+        <div class="slide-content">
+            <img src="0M3A3188.JPG" alt="Avyaansh" class="baby-photo">
+            <h1>You're Invited!</h1>
+            <p>Join us for a special celebration</p>
+        </div>
+    </div>
+    
+    <!-- Slide 2: To Celebrate with Photo -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>To celebrate</h2>
+            <img src="0M3A3313.JPG" alt="Avyaansh" class="baby-photo">
+            <p>A very special milestone...</p>
+        </div>
+    </div>
+    
+    <!-- Slide 3: Avyaansh's Birthday with Photo -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Avyaansh Jain's</h2>
+            <img src="0M3A3316.JPG" alt="Avyaansh" class="baby-photo">
+            <h1 class="big-number">1st</h1>
+            <h2>Birthday!</h2>
+        </div>
+    </div>
+    
+    <!-- Slide 4: Event Details with Photo -->
+    <div class="slide">
+        <div class="slide-content">
+            <img src="0M3A3419.JPG" alt="Avyaansh" class="baby-photo">
+            <h3>🎉 EVENT DETAILS 🎉</h3>
+            <div class="event-details">
+                <p><strong>📅 DATE:</strong> 22 September</p>
+                <p><strong>🕔 TIME:</strong> 5:00 PM</p>
+                <p><strong>🏨 VENUE:</strong> Deepali Hotel</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slide 5: Join Us with Family Photo -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Join us for</h2>
+            <img src="0M3A3355.JPG" alt="Avyaansh with family" class="baby-photo">
+            <p>Fun, laughter, and cake<br>
+            as we celebrate<br>
+            Avyaansh turning ONE!</p>
+        </div>
+    </div>
+    
+    <!-- Slide 6: Can't Wait with another Photo -->
+    <div class="slide">
+        <div class="slide-content">
+            <img src="0M3A3536.JPG" alt="Avyaansh" class="baby-photo">
+            <h1>Can't wait to see you there!</h1>
+            <p>Let's make this birthday unforgettable!</p>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">⬅ Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next ➡</button>
+    </div>
+    
+    <!-- Auto-play button -->
+    <button class="auto-play" onclick="toggleAutoPlay()">🎬 Auto Play</button>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        let autoPlay = false;
+        let autoPlayInterval;
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        function toggleAutoPlay() {
+            autoPlay = !autoPlay;
+            const btn = document.querySelector('.auto-play');
+            
+            if (autoPlay) {
+                btn.textContent = '⏸ Stop Auto Play';
+                autoPlayInterval = setInterval(nextSlide, 4000);
+            } else {
+                btn.textContent = '🎬 Auto Play';
+                clearInterval(autoPlayInterval);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            } else if (e.key === 'Enter') {
+                toggleAutoPlay();
+            }
+        });
+        
+        // Auto-start message
+        setTimeout(() => {
+            alert('🎉 Welcome to Avyaansh\'s Birthday Invitation!\n\n▶️ Use ARROW KEYS or buttons to navigate\n🎬 Click "Auto Play" for slideshow\n📱 Press SPACE or ENTER for controls');
+        }, 1000);
+    </script>
+</body>
+</html>

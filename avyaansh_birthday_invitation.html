@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avyaansh's 1st Birthday Invitation</title>
+    <style>
+        :root{
+            --bg1:#f8fafc;
+            --bg2:#ecfeff;
+            --primary:#2563eb;
+            --accent:#f59e0b;
+            --text:#0f172a;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, Arial, sans-serif;
+            background: radial-gradient(1200px 800px at 80% -20%, var(--bg2), transparent 60%),
+                        radial-gradient(1000px 700px at -20% 120%, #eef2ff, transparent 60%),
+                        linear-gradient(180deg, #ffffff, #f5f7fb);
+            color: var(--text);
+            height:100vh; overflow:hidden;
+        }
+        .slide{display:none;height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+        .slide.active{display:flex;animation:fadeIn .6s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+        .card{width:min(1100px,92vw);background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(2,6,23,.12);padding:28px}
+        .header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+        .title{font-size:clamp(28px,4vw,42px);font-weight:800;color:#111827}
+        .subtitle{font-size:clamp(16px,2.4vw,20px);color:#374151}
+        .badge{background:linear-gradient(90deg,#fde68a,#f59e0b);color:#111827;font-weight:700;padding:6px 12px;border-radius:999px}
+        .photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+        .grid-photo{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px;box-shadow:0 8px 24px rgba(2,6,23,.18)}
+        .details{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+        .pill{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:999px;padding:10px 14px;font-weight:600}
+        .cta{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+        .btn{background:var(--primary);color:#fff;border:none;border-radius:12px;padding:10px 14px;font-weight:700;box-shadow:0 10px 24px rgba(37,99,235,.25)}
+        .btn.secondary{background:#111827}
+        .footer-fixed{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 14px;border-radius:12px;font-weight:700;box-shadow:0 10px 24px rgba(2,6,23,.35)}
+        .navigation{position:fixed;top:16px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10}
+        .nav-btn{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:8px 12px;font-weight:700;box-shadow:0 6px 16px rgba(2,6,23,.12)}
+        .auto-play{position:fixed;top:16px;right:16px}
+        @media (max-width:900px){.photo-grid{grid-template-columns:repeat(2,1fr)}.grid-photo{aspect-ratio:3/3}}
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Modern card with 4-photo grid -->
+    <div class="slide active">
+        <div class="card">
+            <div class="header">
+                <div>
+                    <div class="badge">You're Invited</div>
+                    <div class="title">Avyaansh Jain turns ONE</div>
+                    <div class="subtitle">Join us for a cheerful celebration</div>
+                </div>
+            </div>
+            <div class="photo-grid">
+                <img src="0M3A3188.JPG" class="grid-photo" alt="photo 1">
+                <img src="0M3A3313.JPG" class="grid-photo" alt="photo 2">
+                <img src="0M3A3316.JPG" class="grid-photo" alt="photo 3">
+                <img src="0M3A3419.JPG" class="grid-photo" alt="photo 4">
+            </div>
+            <div class="details">
+                <div class="pill">📅 22 September</div>
+                <div class="pill">🕔 5:00 PM</div>
+                <div class="pill">🏨 Deepali Hotel</div>
+            </div>
+            <div class="cta">
+                <button class="btn" onclick="nextSlide()">See more photos →</button>
+                <button class="btn secondary" onclick="toggleAutoPlay()">Auto Play</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Another 4-photo grid + details -->
+    <div class="slide">
+        <div class="card">
+            <div class="header">
+                <div class="title">We can't wait to celebrate with you!</div>
+                <div class="subtitle">Cake, balloons, and smiles guaranteed</div>
+            </div>
+            <div class="photo-grid">
+                <img src="0M3A3355.JPG" class="grid-photo" alt="photo 5">
+                <img src="0M3A3363.JPG" class="grid-photo" alt="photo 6">
+                <img src="0M3A3536.JPG" class="grid-photo" alt="photo 7">
+                <img src="0M3A3228.JPG" class="grid-photo" alt="photo 8">
+            </div>
+            <div class="details">
+                <div class="pill">👶 Avyaansh's 1st Birthday</div>
+                <div class="pill">📍 Deepali Hotel</div>
+                <div class="pill">⏰ 5:00 PM</div>
+            </div>
+            <div class="cta">
+                <button class="btn" onclick="previousSlide()">← Back</button>
+                <button class="btn" onclick="nextSlide()">Replay →</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-fixed">📅 22 September • 🕔 5 PM • 🏨 Deepali Hotel</div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        let autoPlay = false;
+        let autoPlayInterval;
+
+        function showSlide(index){
+            slides.forEach(s => s.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+        function nextSlide(){ currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
+        function previousSlide(){ currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }
+        function toggleAutoPlay(){
+            autoPlay = !autoPlay;
+            if(autoPlay){ autoPlayInterval = setInterval(nextSlide, 4000); }
+            else { clearInterval(autoPlayInterval); }
+        }
+        document.addEventListener('keydown', (e)=>{
+            if(e.key==='ArrowRight' || e.key===' ') nextSlide();
+            if(e.key==='ArrowLeft') previousSlide();
+            if(e.key==='Enter') toggleAutoPlay();
+        });
+    </script>
+</body>
+</html>
