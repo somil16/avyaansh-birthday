@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avyaansh is Turning One!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@500;700&display=swap');
+
+        :root {
+            --c-bg: #fefbff;
+            --c-primary: #8e44ad;
+            --c-secondary: #3498db;
+            --c-accent: #f1c40f;
+            --c-text: #34495e;
+            --c-white: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #f5f7fa 0%, #eef2f7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            width: min(1200px, 95vw);
+            height: min(700px, 90vh);
+            background: var(--c-white);
+            border-radius: 24px;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .photo-panel {
+            flex: 1.2;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .info-panel {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--c-primary);
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--c-text);
+            margin-bottom: 30px;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        .detail-item strong {
+            font-weight: 700;
+            color: var(--c-primary);
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--c-secondary);
+        }
+
+        .gallery {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 16px;
+            display: flex;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .thumb {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .thumb.active, .thumb:hover {
+            border-color: var(--c-primary);
+            transform: scale(1.1);
+        }
+
+        /* --- Animation Styles --- */
+
+        .music-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- Animation Styles --- */
+        .animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            background-color: rgba(255, 0, 0, 0.7);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            bottom: -100px;
+            animation: flyUp 10s infinite ease-in;
+            opacity: 0;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 10px;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        .balloon:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; background-color: rgba(0, 255, 255, 0.7); }
+        .balloon:nth-child(2) { left: 25%; animation-duration: 15s; animation-delay: 2s; background-color: rgba(255, 255, 0, 0.7); }
+        .balloon:nth-child(3) { left: 50%; animation-duration: 10s; animation-delay: 1s; background-color: rgba(255, 0, 255, 0.7); }
+        .balloon:nth-child(4) { left: 75%; animation-duration: 13s; animation-delay: 4s; background-color: rgba(0, 0, 255, 0.7); }
+        .balloon:nth-child(5) { left: 90%; animation-duration: 11s; animation-delay: 3s; background-color: rgba(0, 255, 0, 0.7); }
+
+        @keyframes flyUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-120vh); opacity: 0; }
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FFD700; /* Gold color */
+            border-radius: 50%;
+            box-shadow: 0 0 15px #FFD700, 0 0 25px #FFD700, 0 0 40px #FFF, 0 0 60px #FFF;
+            animation: burst 1.2s infinite ease-out;
+            opacity: 0;
+        }
+
+        .firework:nth-child(6) { top: 20%; left: 20%; animation-delay: 0.5s; }
+        .firework:nth-child(7) { top: 50%; left: 80%; animation-delay: 1s; }
+        .firework:nth-child(8) { top: 80%; left: 30%; animation-delay: 0.2s; }
+        .firework:nth-child(9) { top: 60%; left: 50%; animation-delay: 1.3s; }
+        .firework:nth-child(10) { top: 35%; left: 65%; animation-delay: 0.8s; }
+
+
+        @keyframes burst {
+            0% { transform: scale(0.5) rotate(0deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: scale(5) rotate(360deg); opacity: 0; }
+        }
+
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                max-height: 95vh;
+            }
+            .photo-panel {
+                height: 300px;
+            }
+            .info-panel {
+                padding: 30px;
+            }
+            .title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="birthday-music" loop autoplay>
+        <source src="aashiyan-barfi-320-kbps_42vCz4by.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="animation-container">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+    </div>
+    <div class="container">
+        <div class="photo-panel">
+            <img src="0M3A3419.JPG" alt="Avyaansh" class="main-photo" id="main-photo">
+            <div class="gallery">
+                <img src="0M3A3419.JPG" alt="Thumbnail 1" class="thumb active">
+                <img src="0M3A3536.JPG" alt="Thumbnail 2" class="thumb">
+                <img src="0M3A3316.JPG" alt="Thumbnail 3" class="thumb">
+                <img src="0M3A3363 copy.jpg" alt="Thumbnail 4" class="thumb">
+            </div>
+        </div>
+        <div class="info-panel">
+            <div class="title">Our little star<br>is turning one!</div>
+            <div class="subtitle">Join us to celebrate Avyaansh Jain's 1st Birthday</div>
+            <div class="details">
+                <div class="detail-item"><strong>📅 Date:</strong> 22 September</div>
+                <div class="detail-item"><strong>🕔 Time:</strong> 5:00 PM</div>
+                <div class="detail-item"><strong>🏨 Venue:</strong> Hotel Deepali</div>
+            </div>
+            <div class="footer-text">Cake, giggles, and fun await!</div>
+        </div>
+    </div>
+
+    <script>
+        const mainPhoto = document.getElementById('main-photo');
+        const thumbs = document.querySelectorAll('.thumb');
+        let currentPhotoIndex = 0;
+        let slideInterval;
+
+        function changePhoto(selectedThumb, isAuto = false) {
+            const selectedIndex = Array.from(thumbs).indexOf(selectedThumb);
+            if (selectedIndex === -1) return; // Guard against errors
+            currentPhotoIndex = selectedIndex;
+
+            // Update main photo
+            mainPhoto.style.opacity = 0;
+            setTimeout(() => {
+                mainPhoto.src = selectedThumb.src;
+                mainPhoto.style.opacity = 1;
+            }, 200);
+
+            // Update active thumbnail
+            thumbs.forEach(thumb => thumb.classList.remove('active'));
+            selectedThumb.classList.add('active');
+
+            // If a user clicks manually, reset the timer
+            if (!isAuto) {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(autoSlide, 2000);
+            }
+        }
+
+        function autoSlide() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % thumbs.length;
+            changePhoto(thumbs[currentPhotoIndex], true);
+        }
+
+        // Set up click listeners for manual changes
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', () => changePhoto(thumb));
+        });
+
+        // --- Auto-start music ---
+        const music = document.getElementById('birthday-music');
+        
+        // Set volume to a comfortable level
+        music.volume = 0.3;
+        
+        // Try to start music automatically when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                music.play().catch(error => {
+                    console.log("Autoplay prevented. Music will start on first user interaction.");
+                });
+            }, 1000);
+        });
+
+        // Also try when user first interacts with the page
+        document.addEventListener('click', () => {
+            music.play().catch(error => {
+                console.log("Could not play music:", error);
+            });
+        }, { once: true });
+        // Start the automatic slideshow
+        slideInterval = setInterval(autoSlide, 2000);
+    </script>
+</body>
+</html>
