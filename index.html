@@ -22,9 +22,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            overflow: hidden;
+            padding: 0;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         .container {
@@ -38,6 +44,7 @@
             animation: fadeIn 1s ease-out;
             position: relative;
             z-index: 1;
+            max-width: 100%;
         }
 
         @keyframes fadeIn {
@@ -227,19 +234,79 @@
 
 
         @media (max-width: 900px) {
+            body {
+                padding: 10px;
+            }
             .container {
                 flex-direction: column;
                 height: auto;
-                max-height: 95vh;
+                max-height: none;
+                width: 100%;
+                min-height: 100vh;
             }
             .photo-panel {
-                height: 300px;
+                height: 50vh;
+                min-height: 300px;
             }
             .info-panel {
-                padding: 30px;
+                padding: 20px;
+                flex: none;
             }
             .title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                margin-bottom: 8px;
+            }
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+            .detail-item {
+                font-size: 1rem;
+            }
+            .footer-text {
+                font-size: 1rem;
+            }
+            .gallery {
+                bottom: 10px;
+                padding: 8px;
+                gap: 8px;
+            }
+            .thumb {
+                width: 50px;
+                height: 50px;
+                border-radius: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+                margin: 0;
+            }
+            .title {
+                font-size: 1.8rem;
+            }
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            .detail-item {
+                font-size: 0.9rem;
+            }
+            .info-panel {
+                padding: 15px;
+            }
+            .photo-panel {
+                height: 45vh;
+            }
+            .thumb {
+                width: 40px;
+                height: 40px;
+            }
+            .gallery {
+                gap: 6px;
+                padding: 6px;
             }
         }
     </style>
@@ -269,6 +336,7 @@
                 <img src="0M3A3536.JPG" alt="Thumbnail 2" class="thumb">
                 <img src="0M3A3316.JPG" alt="Thumbnail 3" class="thumb">
                 <img src="0M3A3363 copy.jpg" alt="Thumbnail 4" class="thumb">
+                <img src="Gemini_Generated_Image_h53em4h53em4h53e.png" alt="Thumbnail 5" class="thumb">
             </div>
         </div>
         <div class="info-panel">
